@@ -17,7 +17,7 @@ body{margin:0;min-height:100vh;background-color:var(--ground);background-image:r
 h1{font-family:var(--display);font-weight:400;font-size:clamp(36px,7vw,60px);line-height:1;margin:0}
 h1 span{display:inline-block;background:var(--gold);color:var(--ink);padding:0 .18em;border:3px solid var(--ink);border-radius:10px;transform:rotate(-2deg);box-shadow:4px 4px 0 var(--shadow)}
 .tag{color:var(--muted);font-weight:500;font-size:20px;margin:10px 0 0;max-width:560px}
-.tools{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.tools{display:grid;grid-template-columns:repeat(2,1fr);gap:24px}
 a.tool{display:flex;flex-direction:column;background:#fff;color:var(--ink);text-decoration:none;border:3px solid var(--ink);border-radius:18px;box-shadow:7px 7px 0 var(--shadow);overflow:hidden;transition:transform .1s,box-shadow .1s}
 a.tool:hover{transform:translate(-2px,-2px);box-shadow:9px 9px 0 var(--shadow)}
 a.tool:focus-visible{outline:3px solid #3d7bff;outline-offset:4px}
@@ -27,7 +27,7 @@ a.tool:focus-visible{outline:3px solid #3d7bff;outline-offset:4px}
 .in p{margin:0;color:#565a7c}
 .go{margin-top:8px;font-weight:800}
 .note{color:var(--muted);font-size:15px;margin:0}
-@media (max-width:640px){.tools{grid-template-columns:1fr}}
+@media (max-width:560px){.tools{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -37,13 +37,21 @@ a.tool:focus-visible{outline:3px solid #3d7bff;outline-offset:4px}
     <p class="tag">Tools for planning stories that are as fun to plan as they are to write.</p>
   </header>
   <div class="tools">
-    <a class="tool" href="Story-Forge.html" style="--c:repeating-linear-gradient(90deg,#3fd0bf 0 33%,#ff9a4d 33% 66%,#b39bff 66%)">
+    <a class="tool" href="Story-Forge.html" style="--c:linear-gradient(90deg,#3fd0bf 0 33%,#ff9a4d 33% 66%,#b39bff 66%)">
       <div class="bar"></div>
       <div class="in"><h2>Story Forge</h2><p>Draw a beginning, a middle and an end, plus wildcards and writing skills to practise. Then write a 5-line plan.</p><span class="go">Open Story Forge &rarr;</span></div>
     </a>
-    <a class="tool" href="Story-Ideas.html" style="--c:repeating-linear-gradient(90deg,#ff8fb0 0 25%,#3fd0bf 25% 50%,#ff9a4d 50% 75%,#b39bff 75%)">
+    <a class="tool" href="Story-Ideas.html" style="--c:linear-gradient(90deg,#ff8fb0 0 25%,#3fd0bf 25% 50%,#ff9a4d 50% 75%,#b39bff 75%)">
       <div class="bar"></div>
       <div class="in"><h2>Story Ideas</h2><p>Classic story tropes, each with a prompt to try. Mash two together for a challenge.</p><span class="go">Open Story Ideas &rarr;</span></div>
+    </a>
+    <a class="tool" href="Story-Dice.html" style="--c:linear-gradient(90deg,#ffc9d9 0 11%,#bdeee8 11% 22%,#ffe6a8 22% 33%,#cfe3ff 33% 44%,#d8f5c4 44% 55%,#ffd6b8 55% 66%,#e3d9ff 66% 77%,#f4f1ff 77% 88%,#ffeaa0 88%)">
+      <div class="bar"></div>
+      <div class="in"><h2>Story Dice</h2><p>Roll up to nine picture dice, then tell a story that uses every picture.</p><span class="go">Roll the dice &rarr;</span></div>
+    </a>
+    <a class="tool" href="Character-Builder.html" style="--c:linear-gradient(90deg,#3fd0bf 0 20%,#b39bff 20% 40%,#ff9a4d 40% 60%,#78b8ff 60% 80%,#ff8fb0 80%)">
+      <div class="bar"></div>
+      <div class="in"><h2>Character Builder</h2><p>Invent heroes, villains and sidekicks on a trading card. Saved heroes join the Hero deck in Story Forge.</p><span class="go">Build a character &rarr;</span></div>
     </a>
   </div>
   <p class="note">Your plans, cards and ticks are saved in your own browser on this device.</p>
