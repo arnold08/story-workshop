@@ -18,7 +18,7 @@
   --panel:#ffffff; --line:#1d1b3a; --shadow:#1d1b3a;
   --ink:#1d1b3a; --card:#ffffff; --card-muted:#565a7c;
   --begin:#3fd0bf; --middle:#ff9a4d; --end:#b39bff;
-  --setting:#78b8ff; --hero:#ff8fb0; --object:#ffd23f; --challenge:#1d1b3a; --technique:#8fe07a; --advanced:#ffd23f;
+  --setting:#78b8ff; --hero:#ff8fb0; --object:#ffd23f; --challenge:#1d1b3a; --technique:#8fe07a; --advanced:#ffd23f; --moral:#ff8a7a;
   --btn:#1d1b3a; --btn-text:#ffffff; --btn-shadow:#ffd23f;
   --display:"Bungee","Arial Black",Impact,sans-serif;
   --body:"Baloo 2","Trebuchet MS","Segoe UI",system-ui,sans-serif;
@@ -101,6 +101,11 @@ button,input,select,textarea{font:inherit;color:inherit}
 .stamp{position:absolute;top:44px;right:10px;font-family:var(--display);font-size:13px;color:#d6336c;border:2.5px solid #d6336c;border-radius:6px;padding:1px 7px;transform:rotate(8deg);background:#fff;pointer-events:none}
 .main-card{min-height:268px}
 .wild .card{min-height:190px}
+.moral .card-body{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 28px;align-items:center;padding-bottom:10px}
+.moral .card-text{font-size:26px}
+.moral .card-q{border-top:0;border-left:2px dashed #d5d9ea;padding:4px 0 4px 20px}
+.moral .mine,.moral .tagd{grid-column:1 / -1}
+.tagd{align-self:flex-start;justify-self:start;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;background:var(--ink);color:#fff;border-radius:999px;padding:1px 10px}
 .skill{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
 .card[data-k="adv1"]{box-shadow:6px 6px 0 var(--shadow),0 0 0 3px var(--advanced) inset}
 .card[data-k="adv1"] .card-head{background:repeating-linear-gradient(135deg,var(--advanced) 0 14px,#ffe27a 14px 28px)}
@@ -143,6 +148,8 @@ textarea{min-height:48px}
   .arrow svg{transform:rotate(90deg)}
   .wild{grid-template-columns:1fr 1fr}
   .skill{grid-template-columns:1fr}
+  .moral .card-body{grid-template-columns:1fr}
+  .moral .card-q{border-left:0;border-top:2px dashed #d5d9ea;padding:10px 0 0}
   .row{grid-template-columns:1fr}
   .shop{grid-template-columns:1fr}
   .main-card{min-height:0}
@@ -186,6 +193,11 @@ textarea{min-height:48px}
   <section class="sec" aria-labelledby="h-spine">
     <div class="sec-head"><h2 id="h-spine">The story spine</h2><p>Every story needs these three.</p></div>
     <div class="spine" id="spine"></div>
+  </section>
+
+  <section class="sec" aria-labelledby="h-moral">
+    <div class="sec-head"><h2 id="h-moral">The moral</h2><p>What does your hero learn? Build your ending around it.</p></div>
+    <div class="moral" id="moral"></div>
   </section>
 
   <section class="sec" aria-labelledby="h-skill">
@@ -248,6 +260,7 @@ const ICONS={
   hero:'<circle cx="12" cy="7" r="3.5"/><path d="M5 21c1-4.5 3.8-6.5 7-6.5s6 2 7 6.5"/>',
   object:'<circle cx="7.5" cy="12" r="4"/><path d="M11.5 12H22M18 12v3.5M21 12v2.5"/>',
   technique:'<path d="M4 20l4-1L19 8l-3-3L5 16z"/><path d="M14 7l3 3"/>',
+  moral:'<path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.5 10.9c.6.5 1 1.2 1 2.1h5c0-.9.4-1.6 1-2.1A6 6 0 0 0 12 3z"/>',
   advanced:'<path d="M3 19h18M4 19 3 8l5 4 4-7 4 7 5-4-1 11"/>',
   challenge:'<path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/>'
 };
@@ -383,6 +396,44 @@ const DECKS={
   ['A jar of bottled lightning'],['An umbrella that can fly'],['A map that redraws itself every night'],
   ['A letter with no sender'],['A pet rock that is actually alive'],['Sunglasses that show what people are thinking']
  ]},
+ moral:{name:'Moral',sub:'The lesson',color:'var(--moral)',qLabel:'Build it in:',cards:[
+  ["Being different is a strength","What makes your hero different, and when does it save the day?"],
+  ["Every choice has a cost","What does your hero have to give up?"],
+  ["Friends are worth more than treasure","When does your hero have to choose between them?"],
+  ["Honesty is braver than lying","What lie is your hero tempted to tell?"],
+  ["Real strength is asking for help","Who does your hero finally ask, and why was it so hard?"],
+  ["Don't judge by appearances","Who in your story is not what they seem?"],
+  ["Practice beats talent","What does your hero keep working at while others show off?"],
+  ["It's okay to fail","What does your hero learn from getting it wrong?"],
+  ["Kindness comes back to you","What small kindness early on matters at the end?"],
+  ["Greed leads to trouble","Who wants too much, and what happens to them?"],
+  ["Being brave doesn't mean having no fear","What is your hero scared of, and how do they act anyway?"],
+  ["Teamwork beats going it alone","Why does your hero's solo plan fail?"],
+  ["Be careful what you wish for","Which wish goes wrong, and how?"],
+  ["Home is where your people are","What does your hero realise about home?"],
+  ["Everyone deserves a second chance","Who gets one, and do they make the most of it?"],
+  ["Small things can make a big difference","What tiny thing changes everything?"],
+  ["The truth always comes out","Which secret gets revealed, and when?"],
+  ["Listen before you judge","Who does your hero misunderstand at first?"],
+  ["Patience pays off","Where does rushing get your hero into trouble?"],
+  ["Look after the world around you","What part of nature or the world is your hero protecting?"],
+  ["Pride comes before a fall","How does your hero's pride trip them up?"],
+  ["Forgiveness sets you free","Who does your hero need to forgive? Maybe it's themselves."],
+  ["Keep your promises","Which promise is the hardest one to keep?"],
+  ["You are more than your mistakes","What mistake does your hero have to move past?"],
+  ["It's okay to start again after you fail","What does your hero do differently the second time?"],
+  ["Your best effort matters most, results come second","How does your hero feel proud even without winning?"],
+  ["Finders keepers?","Your hero finds something valuable. Is it really theirs to keep? What does it cost them either way?","","dilemma"],
+  ["Is it ever OK to break a promise?","Your hero promised something to the wrong person. Do they keep it, and what happens?","","dilemma"],
+  ["Is it fair to punish everyone for one person's mistake?","The whole team is blamed for what one person did. Should that person own up?","","dilemma"],
+  ["How do you know what's true?","Your hero saw something amazing, and nobody believes them. What counts as proof?","","dilemma"],
+  ["What happens if everyone takes just a little more?","A forest, river or magic spring everyone shares is running out. Who stops taking first?","","dilemma"],
+  ["Should someone push you out of your comfort zone?","Someone makes your hero face the thing they fear. Were they right to?","","dilemma"],
+  ["Is fair the same as equal?","Two characters are treated differently for a good reason, but one thinks it's unfair. Who's right?","","dilemma"],
+  ["Are you still the same person if you change completely?","A spell turns your hero's best friend into a monster. Are they still their friend?","","dilemma"],
+  ["Why does a name matter?","Someone keeps getting your hero's name wrong. Does it matter, and what does your hero do?","","dilemma"],
+  ["When should grown-ups make the rules?","An adult tells your hero to do something they strongly disagree with. What do they do?","","dilemma"]
+ ]},
  technique:{name:'Technique',sub:'Skill',color:'var(--technique)',qLabel:'How:',cards:[
   ["Start in the middle of the action","Skip waking up and breakfast. Open at a moment when something is already happening.","\u201cThe egg in Leo\u2019s backpack had started ticking.\u201d"],
   ["Show, don't tell","Don't name the feeling. Show what the character does because of it.","Not \u201cMia was nervous\u201d but \u201cMia checked her goggles for the fourth time.\u201d"],
@@ -457,16 +508,16 @@ const DECKS={
  ]}
 };
 const MAIN=['begin','middle','end'], WILD=['setting','hero','object','challenge'], TECH=['tech1','adv1'];
-const ALL=[...MAIN,...TECH,...WILD];            // card slots on the page
-const DECK_KEYS=[...MAIN,'technique','advanced',...WILD];  // decks you can add cards to
+const ALL=[...MAIN,'moral',...TECH,...WILD];            // card slots on the page
+const DECK_KEYS=[...MAIN,'moral','technique','advanced',...WILD];  // decks you can add cards to
 const deckOf=k=>k==='tech1'?'technique':k==='adv1'?'advanced':k;
-const HASQ=[...MAIN,'technique','advanced'];
+const HASQ=[...MAIN,'moral','technique','advanced'];
 const PLAN=[
   ['who','Who is the hero?','Look at the Hero card','e.g. A shy champion swimmer called Mia'],
   ['want','What do they want?','Their goal or wish','e.g. To win back her stolen medal'],
   ['block','What stands in the way?','Your Middle card helps here','e.g. Her best friend is secretly working for the thief'],
   ['worst','What is the worst moment?','When all seems lost','e.g. She is locked in the lighthouse as the storm hits'],
-  ['finish','How does it end?','Your End card','e.g. She tricks the thief, and gives the medal to her friend']
+  ['finish','How does it end?','Your End card, plus what your hero learns','e.g. She tricks the thief, and gives the medal to her friend']
 ];
 
 const KEY='story-forge-v1';
@@ -480,7 +531,7 @@ function castCards(k){
     return ((cb&&cb.cast)||[]).filter(c=>c.name&&c.role!=='villain').map(c=>({t:c.name+(c.type?', the '+c.type:''),q:'',mine:true}));
   }catch(e){return [];}
 }
-const pool=k=>DECKS[k].cards.map(c=>({t:c[0],q:c[1]||'',ex:c[2]||''})).concat((state.custom[k]||[]).map(c=>({t:c.t,q:c.q||'',mine:true}))).concat(castCards(k));
+const pool=k=>DECKS[k].cards.map(c=>({t:c[0],q:c[1]||'',ex:c[2]||'',kind:c[3]||''})).concat((state.custom[k]||[]).map(c=>({t:c.t,q:c.q||'',mine:true}))).concat(castCards(k));
 function pick(k){
   const d=deckOf(k), p=pool(d);
   const avoid=new Set(ALL.filter(o=>deckOf(o)===d).map(o=>state.drawn[o]&&state.drawn[o].t).filter(Boolean));
@@ -508,8 +559,9 @@ function paint(k){
   const card=document.querySelector(`.card[data-k="${k}"]`), c=state.drawn[k];
   card.querySelector('.card-body').innerHTML=
     (c.mine?'<span class="mine">Your card</span>':'')+
+    (c.kind==='dilemma'?'<span class="tagd">Dilemma: your hero decides</span>':'')+
     `<p class="card-text">${esc(c.t)}</p>`+
-    (c.q?`<p class="card-q"><b>${DECKS[deckOf(k)].qLabel||'Think about it:'}</b> ${esc(c.q)}</p>`:'')+
+    (c.q?`<p class="card-q"><b>${c.kind==='dilemma'?'Decide:':(DECKS[deckOf(k)].qLabel||'Think about it:')}</b> ${esc(c.q)}</p>`:'')+
     (c.ex?`<p class="ex"><b>Example</b>${esc(c.ex)}</p>`:'');
   const locked=!!state.locked[k], lb=card.querySelector('.lock');
   lb.setAttribute('aria-pressed',locked); lb.innerHTML=svg(locked?LOCK:UNLOCK,2.4);
@@ -540,6 +592,7 @@ const spine=document.getElementById('spine'), wild=document.getElementById('wild
 const ARROW='<div class="arrow" aria-hidden="true">'+svg('<path d="M5 12h14M13 6l6 6-6 6"/>',3)+'</div>';
 MAIN.forEach((k,i)=>{spine.appendChild(buildCard(k)); if(i<2) spine.insertAdjacentHTML('beforeend',ARROW);});
 WILD.forEach(k=>wild.appendChild(buildCard(k)));
+document.getElementById('moral').appendChild(buildCard('moral'));
 TECH.forEach(k=>document.getElementById('skill').appendChild(buildCard(k)));
 ['technique','tech2','tech3'].forEach(k=>{delete state.drawn[k]; delete state.locked[k];});
 ALL.forEach(k=>{ if(!state.drawn[k]||!state.drawn[k].t) state.drawn[k]=pick(k); paint(k);});
