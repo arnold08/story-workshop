@@ -271,6 +271,15 @@ const REDRAW='<path d="M20 12a8 8 0 1 1-2.4-5.7"/><path d="M20 4v5h-5"/>';
 
 const DECKS={
  begin:{name:'Beginning',sub:'How it starts',color:'var(--begin)',cards:[
+  ["The hero learns a hidden world exists right next to ours","What gives it away, and why has nobody noticed before?"],
+  ["A computer locks everyone inside and makes demands","What does it want, and why does it choose the hero?"],
+  ["The old leader is gone, and the wrong one takes charge","How did they take power, and who knows the truth?"],
+  ["A missing brother or sister leaves a trail of clues","What is the first clue, and why leave clues at all?"],
+  ["Bored gods decide to meddle with the hero's life","What do the gods do, and why pick this hero?"],
+  ["A case arrives that the police can't solve","What makes it impossible, and why bring it to the hero?"],
+  ["A contest invites five lucky winners inside a mysterious place","What's the prize, and who are the other four?"],
+  ["A secret group starts leaving the hero mysterious clues","Who are they, and why won't they just say what they want?"],
+  ["Predators and prey are forced to team up","What danger is so big that enemies have to work together?"],
   ['A stranger arrives with a warning','What is the warning, and why does nobody believe it?'],
   ['The hero finds a strange map','Where does it lead, and who drew it?'],
   ['Something precious is stolen','What was taken, and why does it matter so much?'],
@@ -303,6 +312,19 @@ const DECKS={
   ['An alarm goes off just as the hero walks into the bank','Is it a robbery, or something much stranger?']
  ]},
  middle:{name:'Middle',sub:'Where it gets hard',color:'var(--middle)',cards:[
+  ["The villain forces the hero through a series of challenges","What is the hardest challenge, and what happens if the hero fails?"],
+  ["An old myth turns out to be real, and it's angry","Which myth, and what made it angry?"],
+  ["A king sets the hero three impossible tasks","What are the tasks, and which one seems truly impossible?"],
+  ["A journey into the underworld","What must the hero bring back, and what rule must they never break down there?"],
+  ["The hero is turned into an animal","Which animal, and what can they do now that they couldn't before?"],
+  ["The clues lead to a chase across the world","Where does the trail lead next, and who is chasing the hero?"],
+  ["One by one, the others drop out","Why does each one drop out, and who is left at the end?"],
+  ["The hero has to build what they need from whatever is around them","What do they build, and what do they make it from?"],
+  ["Night falls and the monsters come out","Where can the hero hide, and how long until morning?"],
+  ["Everyone believes the prophecy about the hero, but it was made up","Who made it up, and does the hero need to be special after all?"],
+  ["The hero discovers a memory hidden inside their own mind","Who hid it there, and what does it show?"],
+  ["Nobody believes the hero has changed","What can the hero do to prove it?"],
+  ["A danger appears that's bigger than the war everyone is fighting","Who notices first, and will anyone listen?"],
   ['A trusted friend betrays the hero','Why did they do it? Did they have a good reason?'],
   ['The villain makes everything much worse','What is their next move?'],
   ['The plan goes completely wrong','What was the plan, and what broke?'],
@@ -335,6 +357,17 @@ const DECKS={
   ['Everything the hero says starts coming true','What did they say without thinking, and what chaos follows?']
  ]},
  end:{name:'End',sub:'How it finishes',color:'var(--end)',cards:[
+  ["The hero chooses their own path, not the one they were told to take","Who wanted something else for the hero, and how do they react?"],
+  ["The rightful leader finally takes their place","What makes them the right one to lead?"],
+  ["The hero wins by understanding their enemy","What does the hero learn about the enemy that changes everything?"],
+  ["The trickster's prank backfires on them","What was the prank, and how does it go wrong?"],
+  ["The old world ends, and a new one begins","What is different about the new world?"],
+  ["Each rule-breaker gets a punishment that fits their fault","What happens to each one, and was it fair?"],
+  ["The whole adventure was secretly a test","Who set the test, and what were they really testing?"],
+  ["The heroes return home to find no time has passed","Do they tell anyone, and would anyone believe them?"],
+  ["The cutest creature turns out to be the mastermind","What clues did everyone miss?"],
+  ["The hero learns they were made special on purpose","Who did it, and why?"],
+  ["Former enemies become a family","What moment brings them together for good?"],
   ['The hero defeats the villain in a final showdown','What finally makes the difference?'],
   ['The villain changes sides','What convinces them to switch?'],
   ['The treasure turns out to be worthless. Or is it?','What was really valuable all along?'],
@@ -367,6 +400,18 @@ const DECKS={
   ['The victory party goes hilariously wrong','What goes wrong, and does anyone mind?']
  ]},
  setting:{name:'Setting',sub:'Where',color:'var(--setting)',cards:[
+  ["A school for kids with secret powers"],
+  ["A hidden camp in the woods for kids who don't fit in"],
+  ["A savanna where every animal follows an ancient law"],
+  ["Secret tunnels under a big city"],
+  ["A skyscraper taken over by a computer"],
+  ["Nine worlds joined by a giant tree"],
+  ["A mountain where the gods live"],
+  ["A village of tiny folk in mushroom houses"],
+  ["A factory where impossible inventions are made"],
+  ["A world built entirely from blocks"],
+  ["A land trapped in endless winter by a curse"],
+  ["A land split into kingdoms of different creatures, always at war"],
   ['An underwater city'],['A space station orbiting a dying star'],['A school where the teachers are secretly robots'],
   ['A floating island market'],['A haunted lighthouse'],['Inside a video game'],['A desert train that never stops'],
   ['A tiny village high in the mountains'],['A jungle full of ancient ruins'],['A city where it is always night'],
@@ -379,6 +424,18 @@ const DECKS={
   ['A Viking village on a frozen coast']
  ]},
  hero:{name:'Hero',sub:'Who',color:'var(--hero)',cards:[
+  ["A kid who discovers they're half-magical"],
+  ["A young animal born to lead, but cast out of the herd"],
+  ["A gamer whose game skills work in real life"],
+  ["An absent-minded professor"],
+  ["A hero and their loyal dog"],
+  ["A trickster who can't stop playing pranks"],
+  ["A washed-up former champion"],
+  ["A group of brothers and sisters"],
+  ["An ordinary nobody everyone thinks is “the special one”"],
+  ["A scary-looking creature who desperately wants to be good"],
+  ["A young dinosaur from the wrong side of the war"],
+  ["A kid with a power they're still discovering"],
   ['A nervous inventor'],['A kid who can talk to animals'],['A retired superhero'],['A robot learning to have feelings'],
   ['A ghost who doesn\'t know they\'re a ghost'],['A shy champion swimmer'],['A dragon who is scared of fire'],
   ['A detective who is always wrong'],['The new kid at school'],['A time traveller who lost their machine'],
@@ -390,6 +447,11 @@ const DECKS={
   ['A pirate who gets seasick']
  ]},
  object:{name:'Object',sub:'What',color:'var(--object)',cards:[
+  ["A hammer only the worthy can lift"],
+  ["A box that must never be opened"],
+  ["A message written in secret code"],
+  ["A golden ticket to somewhere nobody has ever been"],
+  ["A cupboard that opens onto another world"],
   ['A key that opens any door, but only once'],['A compass that points to what you want most'],['A broken watch that stops time'],
   ['A notebook that writes back'],['Shoes that never get tired'],['A glowing egg'],['A mirror that shows a different world'],
   ['A USB stick with a secret file'],['A coin that always lands on its edge'],['A piano that plays by itself'],
@@ -397,6 +459,18 @@ const DECKS={
   ['A letter with no sender'],['A pet rock that is actually alive'],['Sunglasses that show what people are thinking']
  ]},
  moral:{name:'Moral',sub:'The lesson',color:'var(--moral)',qLabel:'Build it in:',cards:[
+  ["Your choices matter more than your powers","When does your hero choose the harder, kinder path?"],
+  ["Real leaders look after others","Who in your story leads for themselves, and who leads for everyone?"],
+  ["It's right to question unfair rules","Which rule is unfair, and what happens when your hero speaks up?"],
+  ["Your enemy might need help too","What is your enemy struggling with that nobody knows about?"],
+  ["Family is worth searching for","Who is your hero searching for, and what will they risk to find them?"],
+  ["Notice the small things","What small detail does only your hero spot?"],
+  ["Use your imagination, not just the instructions","When do the instructions fail, and what does your hero invent instead?"],
+  ["Everyone has something special to add","What does the least likely character bring to the team?"],
+  ["Love means putting others first","What does your hero give up for someone else?"],
+  ["You can change what people think of you","What does your hero do to change minds?"],
+  ["Family is the people who stand by you","Who stands by your hero when it counts?"],
+  ["Is it wrong to want to live differently from everyone else?","Someone chooses to leave ordinary life behind. Should your hero try to bring them back?","","dilemma"],
   ["Being different is a strength","What makes your hero different, and when does it save the day?"],
   ["Every choice has a cost","What does your hero have to give up?"],
   ["Friends are worth more than treasure","When does your hero have to choose between them?"],
@@ -435,6 +509,9 @@ const DECKS={
   ["When should grown-ups make the rules?","An adult tells your hero to do something they strongly disagree with. What do they do?","","dilemma"]
  ]},
  technique:{name:'Technique',sub:'Skill',color:'var(--technique)',qLabel:'How:',cards:[
+  ["Talk straight to the reader","Let your narrator speak to the reader directly, in a funny voice.","“Before you ask: no, the explosion was not my fault. Mostly.”"],
+  ["Give every chapter a funny title","Write chapter titles that tease what's coming, so the reader can't wait.","“Chapter 4: I Accidentally Invite a Dragon to Lunch”"],
+  ["Let the sidekick tell the story","Tell it through the eyes of the hero's friend, who notices things the hero misses.","“My best friend was a genius. I was the one who remembered the snacks.”"],
   ["Start in the middle of the action","Skip waking up and breakfast. Open at a moment when something is already happening.","\u201cThe egg in Leo\u2019s backpack had started ticking.\u201d"],
   ["Show, don't tell","Don't name the feeling. Show what the character does because of it.","Not \u201cMia was nervous\u201d but \u201cMia checked her goggles for the fourth time.\u201d"],
   ["Plant a clue early","Mention something in the first paragraph that turns out to matter at the end.","A rusty key hangs by the door on page one. In the last scene, it opens the vault."],
@@ -475,6 +552,8 @@ const DECKS={
   ["Use a callback joke","Set up something funny early, then bring it back at the perfect moment.","The goat that ate Dad\u2019s homework on page one saves the day by eating the villain\u2019s map."]
  ]},
  advanced:{name:'Advanced',sub:'Level up',color:'var(--advanced)',qLabel:'How:',cards:[
+  ["Take turns between narrators","Switch the main character each chapter, so the reader sees every side.","Chapter 1 follows the lion cub. Chapter 2 follows the baboon. Chapter 3 follows the old elephant."],
+  ["Play fair with clues","Show the reader every clue the detective sees, so they could solve it too.","The muddy boot appears on page two, long before the detective explains why it matters."],
   ["Use an unreliable narrator","Let the narrator believe something that isn't true, and let the reader spot it before they do.","\u201cNobody at school likes me,\u201d said Max, as three friends waved him over to their table."],
   ["Tell one moment from two sides","Write the same scene twice, from two different characters\u2019 eyes.","The knight thinks he\u2019s fighting a monster. The dragon thinks a monster has come to steal her eggs."],
   ["Use dramatic irony","Let the reader know something the hero doesn\u2019t, so they want to shout a warning.","We know the friendly shopkeeper is the thief. The hero has just handed him the key."],
@@ -499,6 +578,9 @@ const DECKS={
   ["Start and end with the same image, changed","Open on one image, then return to it at the end, transformed by the story.","An empty birdcage on page one. On the last page, the door is open and a song drifts in."]
  ]},
  challenge:{name:'Challenge',sub:'Rule',color:'var(--challenge)',cards:[
+  ["Write it as a myth that explains why something in nature is the way it is"],
+  ["Tell it as a comic strip with captions"],
+  ["Include a short rhyming song or poem"],
   ['Write it in under 500 words'],['Tell it from the villain\'s point of view'],['Start with the final scene, then go back'],
   ['Your first line must be someone speaking'],['Flip one card so it happens the opposite way'],['The whole story happens in one day'],
   ['Use no more than three characters'],['End the middle with a cliffhanger'],['Write it as diary entries'],
