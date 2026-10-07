@@ -73,6 +73,14 @@ button,input,select,textarea{font:inherit;color:inherit}
 .sec{display:flex;flex-direction:column;gap:16px}
 .sec-head{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 14px}
 .sec-head p{color:var(--muted);font-weight:500}
+.fold-btn{display:inline-flex;align-items:center;gap:12px;background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit;text-align:left}
+.fold-btn .chev{flex:none;display:grid;place-items:center;width:32px;height:32px;border:3px solid var(--line);border-radius:9px;background:var(--panel);box-shadow:3px 3px 0 var(--shadow);transition:transform .2s}
+.fold-btn .chev svg{width:16px;height:16px}
+.fold-btn[aria-expanded="true"] .chev{transform:rotate(90deg)}
+.fold-btn .pill{font-family:var(--body);font-size:13px;font-weight:800;letter-spacing:.03em;text-transform:uppercase;border:2px solid var(--line);border-radius:999px;padding:0 10px;color:var(--muted)}
+.sec[data-fold] .sec-head{cursor:pointer;align-items:center}
+.sec.folded .sec-head{border:2.5px dashed var(--line);border-radius:14px;padding:12px 16px;background:var(--panel)}
+@media (prefers-reduced-motion:reduce){.fold-btn .chev{transition:none}}
 
 /* cards */
 .spine{display:grid;grid-template-columns:1fr 34px 1fr 34px 1fr;gap:12px;align-items:stretch}
@@ -195,17 +203,17 @@ textarea{min-height:48px}
     <div class="spine" id="spine"></div>
   </section>
 
-  <section class="sec" aria-labelledby="h-moral">
+  <section class="sec" aria-labelledby="h-moral" data-fold="moral">
     <div class="sec-head"><h2 id="h-moral">The moral</h2><p>What does your hero learn? Build your ending around it.</p></div>
     <div class="moral" id="moral"></div>
   </section>
 
-  <section class="sec" aria-labelledby="h-skill">
+  <section class="sec" aria-labelledby="h-skill" data-fold="skill">
     <div class="sec-head"><h2 id="h-skill">Skills to practise</h2><p>Use both tricks in this story. The striped one is an advanced move.</p></div>
     <div class="skill" id="skill"></div>
   </section>
 
-  <section class="sec" aria-labelledby="h-wild">
+  <section class="sec" aria-labelledby="h-wild" data-fold="wild">
     <div class="sec-head"><h2 id="h-wild">Wildcards</h2><p>Use them, or lock them and ignore them. You decide.</p></div>
     <div class="wild" id="wild"></div>
   </section>
@@ -225,7 +233,7 @@ textarea{min-height:48px}
     </div>
   </section>
 
-  <section class="sec" aria-labelledby="h-shop">
+  <section class="sec" aria-labelledby="h-shop" data-fold="shop">
     <div class="sec-head"><h2 id="h-shop">Make your own cards</h2><p>Invent a card and it goes into the deck for future draws.</p></div>
     <div class="panel shop">
       <form class="form" id="addForm">
@@ -694,9 +702,25 @@ document.getElementById('clearPlan').addEventListener('click',()=>{
 });
 
 /* copy */
+/* fold-away sections: closed until opened, remembered per browser */
+const FOLD_OF=k=>k==='moral'?'moral':TECH.includes(k)?'skill':WILD.includes(k)?'wild':null;
+state.open=state.open||{};
+document.querySelectorAll('.sec[data-fold]').forEach(sec=>{
+  const key=sec.dataset.fold, head=sec.querySelector('.sec-head'), h2=head.querySelector('h2');
+  const body=document.createElement('div'); body.className='fold-body'; body.id='fold-'+key;
+  body.style.display='flex'; body.style.flexDirection='column'; body.style.gap='16px';
+  while(head.nextSibling) body.appendChild(head.nextSibling);
+  sec.appendChild(body);
+  const btn=document.createElement('button'); btn.type='button'; btn.className='fold-btn'; btn.setAttribute('aria-controls',body.id);
+  btn.innerHTML='<span class="chev" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></span><span class="t"></span><span class="pill"></span>';
+  btn.querySelector('.t').textContent=h2.textContent; h2.textContent=''; h2.appendChild(btn);
+  const set=open=>{body.hidden=!open; sec.classList.toggle('folded',!open); btn.setAttribute('aria-expanded',open); btn.querySelector('.pill').textContent=open?'Hide':'Show';};
+  set(!!state.open[key]);
+  head.addEventListener('click',()=>{state.open[key]=body.hidden; set(state.open[key]); save();});
+});
 function planText(){
   const L=['MY STORY PLAN',''];
-  ALL.forEach(k=>L.push(`${DECKS[deckOf(k)].name}: ${state.drawn[k].t}`));
+  ALL.filter(k=>!FOLD_OF(k)||state.open[FOLD_OF(k)]).forEach(k=>L.push(`${DECKS[deckOf(k)].name}: ${state.drawn[k].t}`));
   L.push('');
   PLAN.forEach(([id,label],i)=>L.push(`${i+1}. ${label} ${(state.plan[id]||'').trim()||'...'}`));
   return L.join('\n');
